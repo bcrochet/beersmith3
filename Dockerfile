@@ -1,13 +1,15 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 MAINTAINER Brad P. Crochet <brad@crochet.net>
 
-RUN apt-get update && \
-    apt-get install -y curl && \
-    curl https://s3.amazonaws.com/beersmith-3/BeerSmith-3.0.9_amd64.deb -o /tmp/beersmith.deb && \
-    apt-get install -y /tmp/beersmith.deb && \
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt update && \
+    apt upgrade -y && \
+    apt install -y curl && \
+    curl https://beersmith3-1.s3.amazonaws.com/BeerSmith-3.1.8_amd64.deb -o /tmp/beersmith.deb && \
+    apt install -y /tmp/beersmith.deb && \
     rm /tmp/beersmith.deb && \
-    apt-get purge -y curl && \
-    apt-get clean
+    rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /home/beersmith3/.beersmith3 && \
     chmod 0775 -R /home/beersmith3
