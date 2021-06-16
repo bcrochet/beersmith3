@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update && \
     apt upgrade -y && \
     apt install -y curl && \
-    curl https://beersmith3-1.s3.amazonaws.com/BeerSmith-3.2.7_amd64.deb -o /tmp/beersmith.deb && \
+    curl https://beersmith3-2.s3.amazonaws.com/BeerSmith-3.2.7_amd64.deb -o /tmp/beersmith.deb && \
     apt install -y /tmp/beersmith.deb && \
     rm /tmp/beersmith.deb && \
     rm -rf /var/lib/apt/lists/*
